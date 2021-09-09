@@ -1,0 +1,8 @@
+
+# Dependency directory
+node_modules/
+
+.idea/
+
+.env
+.DS_Store
