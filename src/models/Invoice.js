@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('../models/user');
 const userType = require('../constant/user');
 const { Schema } = mongoose;
 
@@ -31,7 +32,7 @@ InvoiceSchema.pre('save', function (next) {
 
 InvoiceSchema.post('save', async (doc, next) => {
     // add customer tag if not exists on user
-    await UserModel.findOneAndUpdate({ _id: doc.user_id },
+    await User.findOneAndUpdate({ _id: doc.user_id },
         { $addToSet: { userType: userType.customer } });
     next();
 });
