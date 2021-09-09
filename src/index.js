@@ -5,6 +5,7 @@ const passport = require('passport');
 const routes = require('./routes');
 const morgan = require('morgan');
 const cors = require('cors');
+const db = require('./db/db');
 const { serializeUser, deserializeUser, GoogleStrategy, isLoggedIn } = require('./middlewares/auth');
 const errorHandler = require('./middlewares/error');
 
@@ -13,6 +14,13 @@ const corsOptions = {
   methods: 'GET, POST, DELETE, PATCH, PUT, HEAD',
   credentials: true,
 };
+
+// connect DB
+db.connection().then(() => {
+  console.log('Database is connected');
+}).catch((e) => {
+  console.error(e);
+});
 
 const app = express();
 require('dotenv').config()

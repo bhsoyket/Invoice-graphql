@@ -3,8 +3,6 @@ const health					=	require('./controllers/health');
 const auth	                    =	require('./controllers/auth.controller');
 const {isLoggedIn}	            =	require('./middlewares/auth');
 
-// require('./middlewares/auth');
-
 const passport = require('passport');
 
 
