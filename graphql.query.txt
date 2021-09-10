@@ -131,3 +131,45 @@
     }
   }
 }
+
+\\ add invoice mutation query 
+mutation {
+  addInvoice(user_id: "613a55d888623939fbb4d5ad", contact_number: "01814949159", address: "yyyyyyyyyyyyyyy", status: "pending", total: "200") {
+    user_id
+    contact_number
+    address
+    status
+    total
+  }
+}
+
+\\ update invoice by id mutation query 
+mutation {
+  updateInvoiceById(id: "613b30d418945e99e8a14452", user_id: "613a55d888623939fbb4d5ad", contact_number: "01814949159", address: "fffffffffff", status: "pending", total: "200") {
+    user_id
+    contact_number
+    address
+    status
+    total
+  }
+}
+
+\\ add item mutation query 
+mutation {
+  addItem(invoice: "613b30d418945e99e8a14452", name: "gggggggggg", quantity: 2, price: 100) {
+    invoice
+    name
+    quantity
+    price
+  }
+}
+
+\\ update item by id mutation query 
+mutation {
+  updateItemById(id: "613b3a465858fd6978e641ee", invoice: "613b30d418945e99e8a14452", name: "gggggggggg", quantity: 2, price: 100) {
+    invoice
+    name
+    quantity
+    price
+  }
+}

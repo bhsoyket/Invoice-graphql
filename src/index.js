@@ -9,7 +9,8 @@ const cors = require('cors');
 const db = require('./db/db');
 const { serializeUser, deserializeUser, GoogleStrategy, isLoggedIn } = require('./middlewares/auth');
 const errorHandler = require('./middlewares/error');
-const graphqlSchema = require('./schemas/querySchema');
+const graphqlQuerySchema = require('./schemas/querySchema');
+const graphqlMutationSchema = require('./schemas/mutationSchema');
 
 const corsOptions = {
   origin: true,
@@ -49,10 +50,21 @@ if (process.env.NODE_ENV !== 'test') {
   app.use('/api/v1/*', isLoggedIn);
 }
 app.use(
-  '/graphql',
+  '/graphql/query',
   graphqlHTTP((request) => {
     return {
-      schema: graphqlSchema,
+      schema: graphqlQuerySchema,
+      context: { startTime: Date.now() },
+      graphiql: true,
+      extensions,
+    };
+  })
+)
+app.use(
+  '/graphql/mutation',
+  graphqlHTTP((request) => {
+    return {
+      schema: graphqlMutationSchema,
       context: { startTime: Date.now() },
       graphiql: true,
       extensions,
