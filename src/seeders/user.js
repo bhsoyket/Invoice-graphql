@@ -1,6 +1,5 @@
 const faker = require('faker');
-const User = require('../models/user');
-const userType = require('../constant/user')
+const User = require('../models/User');
 const db = require('../db/db');
 
 // connect DB
@@ -10,7 +9,7 @@ db.connection().then(() => {
     console.error(e);
 });
 
-Array(30)
+Array(10)
     .fill(Date.now())
     .map(async (item, index) => {
         const date = new Date();
@@ -19,10 +18,10 @@ Array(30)
 
         const users = {
             name: faker.name.findName(),
-            google_id: faker.datatype.uuid(),
             email: faker.internet.email(),
+            phone: faker.random.phone(),
             image: faker.random.image(),
-            userType: [userType.user],
+            google_id: faker.datatype.uuid(),
             created_at: date.toISOString(),
             updated_at: date.toISOString(),
         };

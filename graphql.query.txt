@@ -1,0 +1,133 @@
+
+
+\\ get users query 
+{
+  users {
+    name
+    email
+    google_id
+    phone
+  }
+}
+
+\\ get user by id query 
+{
+  user(id: "613a55d888623939fbb4d5ad") {
+    name
+    email
+    google_id
+    phone
+  }
+}
+
+\\ get customers query 
+{
+  customers {
+    name
+    email
+    google_id
+    phone
+    isCustomer
+  }
+}
+
+\\ get invoices query 
+{
+  invoices {
+    invoice_no
+    user {
+      name
+      email
+      google_id
+      phone
+    }
+    total
+  }
+}
+
+\\ get invoice by id query 
+{
+  invoice (id: "613a55e75739c11cd16abb6b") {
+    invoice_no
+    user {
+      name
+      email
+      google_id
+      phone
+    }
+    total
+  }
+}
+
+\\ get invoiceItems query 
+{
+  invoiceItems {
+    invoice {
+      invoice_no
+      user {
+        name
+        email
+        google_id
+        phone
+      }
+      total
+    }
+    name
+    quantity
+    price
+  }
+}
+
+\\ get invoiceItem by id query 
+{
+  invoiceItem (id: "613a55e95739c11cd16abba0") {
+    invoice {
+      invoice_no
+      user {
+        name
+        email
+        google_id
+        phone
+      }
+      total
+    }
+    name
+    quantity
+    price
+  }
+}
+
+\\ invoice with items query 
+{
+  invoiceWithItems {
+    invoice_no
+    user {
+      name
+      email
+      google_id
+    }
+    total
+    items {
+      name
+      quantity
+      price
+    }
+  }
+}
+
+\\ invoice summary query 
+{
+  summary {
+    date
+    total_invoice_count
+    customers {
+      invoice_count
+      user {
+        name
+        email
+        google_id
+        phone
+      }
+    }
+  }
+}

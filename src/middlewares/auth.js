@@ -1,6 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const User = require('../models/user');
-const userType = require('../constant/user');
+const User = require('../models/User');
 
 require('dotenv').config('.env');
 
@@ -10,30 +9,29 @@ module.exports.GoogleStrategy = new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL,
 },
-(async (accessToken, refreshToken, profile, cb) => {
-  try {
-    let user = await User.findOne({ google_id: profile.id }).lean();
+  (async (accessToken, refreshToken, profile, cb) => {
+    try {
+      let user = await User.findOne({ google_id: profile.id }).lean();
+      if (!user) {
+        // create new user;
+        const profileImage = profile.photos ? profile.photos[0].value : null;
+        const email = profile.emails ? profile.emails[0].value : null;
 
-    if (!user) {
-      // create new user;
-      const profileImage = profile.photos ? profile.photos[0].value : null;
-      const email = profile.emails ? profile.emails[0].value : null;
+        const payload = {
+          google_id: profile.id,
+          name: profile.displayName,
+          image: profileImage,
+          email,
+          phone: profile.phone
+        };
+        user = await User.create(payload);
+      }
 
-      const payload = {
-        google_id: profile.id,
-        name: profile.displayName,
-        image: profileImage,
-        email,
-        userType: [userType.user],
-      };
-      user = await User.create(payload);
+      cb(null, user);
+    } catch (e) {
+      cb(e, null);
     }
-
-    cb(null, user);
-  } catch (e) {
-    cb(e, null);
-  }
-}));
+  }));
 
 
 module.exports.serializeUser = (user, done) => {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const CustomerSchema = new Schema({
     google_id: { type: String },
     name: {
         type: String,
@@ -12,7 +12,6 @@ const UserSchema = new Schema({
     email: { type: String },
     phone: { type: String, trim: true },
     image: { type: String, required: false },
-    isCustomer: { type: Boolean, required: true, default: false},
 },
     {
         versionKey: false,
@@ -24,4 +23,4 @@ const UserSchema = new Schema({
 );
 
 
-module.exports =  mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Customer', CustomerSchema);
