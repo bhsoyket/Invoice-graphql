@@ -2,7 +2,6 @@ const graphql = require('graphql');
 const User = require('../models/User');
 const Invoice = require('../models/Invoice');
 const InvoiceItem = require('../models/InvoiceItem');
-const Customer = require('../models/Customer');
 const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLSchema } = graphql;
 const {
   UserType,
@@ -32,7 +31,7 @@ const RootQuery = new GraphQLObjectType({
     customers: {
       type: new GraphQLList(UserType),
       resolve(parent, args) {
-        return Customer.find({isCustomer: true});
+        return User.find({isCustomer: true});
       },
     },
     invoices: {
@@ -103,7 +102,6 @@ const RootQuery = new GraphQLObjectType({
             }
           },
         ]);
-        console.log(result[0].customers[0].user);
         return result;
       },
     },
@@ -111,7 +109,6 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(InvoiceWithItemsType),
       async resolve(parent, args) {
         const result = Invoice.find({});
-        console.log(result[0]);
         return result;
       },
     },

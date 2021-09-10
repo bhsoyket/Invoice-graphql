@@ -61,7 +61,7 @@ app.use(
   })
 )
 app.use(
-  '/graphql/mutation',
+  '/api/v1/graphql/mutation',
   graphqlHTTP((request) => {
     return {
       schema: graphqlMutationSchema,

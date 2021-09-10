@@ -37,6 +37,7 @@ const Mutation = new GraphQLObjectType({
           user_id: args.user_id,
           contact_number: args.contact_number,
           address: args.address,
+          status: args.status,
           total: parseInt(args.total, 10),
         }
         const invoice = await Invoice.create(payload);

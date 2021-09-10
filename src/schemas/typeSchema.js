@@ -28,7 +28,7 @@ const CustomerType = new GraphQLObjectType({
 const InvoiceType = new GraphQLObjectType({
     name: 'Invoice',
     fields: () => ({
-        invoice_no: { type: GraphQLID },
+        invoice_no: { type: GraphQLString },
         user: {
             type: UserType,
             resolve(parent, args) {

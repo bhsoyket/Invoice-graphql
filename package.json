@@ -8,7 +8,7 @@
     "start:dev": "nodemon src/index.js",
     "seed:user": "node src/seeders/user.js",
     "seed:invoice": "node src/seeders/invoice.js",
-    "test": "node_modules/.bin/mocha  src/tests/**/*.test.js --timeout 10000"
+    "test": "mocha src/**/*.test.js --timeout 15000 --exit"
   },
   "keywords": [],
   "author": "",
@@ -27,11 +27,11 @@
     "express-validator": "^6.12.1",
     "faker": "^5.5.3",
     "graphql": "^15.5.3",
-    "graphql-compose": "^9.0.3",
-    "graphql-compose-mongoose": "^9.6.0",
+    "mocha": "^9.1.1",
     "mongoose": "^6.0.5",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "supertest": "^6.1.6"
   }
 }
