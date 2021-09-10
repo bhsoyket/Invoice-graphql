@@ -143,7 +143,7 @@ response:{
 
 ```
 
-### get invoice with customer nd items:
+### get invoice with customer and items:
 ```shell
 method: post
 url: http://localhost:4000/graphql/query
@@ -281,15 +281,15 @@ response: {
 method: post
 url: http://localhost:4000/api/v1/graphql/mutation
 body: {
-				query: `mutation {
-			addInvoice(user_id: "613a55d888623939fbb4d5ad", contact_number: "01814949159", address: "yyyyyyyyyyyyyyy", status: "pending", total: 200) {
-			  user_id
-			  contact_number
-			  address
-			  status
-			  total
-			}
-		  }`
+        query: `mutation {
+    addInvoice(user_id: "613a55d888623939fbb4d5ad", contact_number: "01814949159", address: "yyyyyyyyyyyyyyy", status: "pending", total: 200) {
+        user_id
+        contact_number
+        address
+        status
+        total
+    }
+    }`
 }
 response: {
   "data": {

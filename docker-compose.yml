@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  # The application
+  app:
+    build: .
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/opt/app
+    environment:
+      - PORT=4000
