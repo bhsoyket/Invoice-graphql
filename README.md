@@ -9,7 +9,8 @@ Graphql api for invoice service with google oauth2 authentication
 
 ### Run the project
 Before run: copy `.env.example` to 	`.env`
-`Note: Update env file (MONGODB_URI, PORT_URI, etc)`
+
+`Note: Update env file (MONGODB_URI, PORT, etc)`
 
 To run the project `npm start`
 
